@@ -1,4 +1,4 @@
-function loader(source) { // loader的参数
+function loader(source) {
   console.log('loader inline');
   return source
 }

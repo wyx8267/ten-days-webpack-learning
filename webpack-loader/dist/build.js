@@ -86,17 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./loaders/inline-loader.js!./src/a.js":
-/*!*********************************************!*\
-  !*** ./loaders/inline-loader.js!./src/a.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = 'ydsk'\n\n//# sourceURL=webpack:///./src/a.js?./loaders/inline-loader.js");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -104,8 +93,41 @@ eval("module.exports = 'ydsk'\n\n//# sourceURL=webpack:///./src/a.js?./loaders/i
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("console.log('hello');\r\n\r\n// -! 不会让文件再通过pre + normal loader 处理\r\n// ! 不再用normal\r\n// !! 不用其他所有，只用行内\r\nlet str = __webpack_require__(/*! !inline-loader!./a.js */ \"./loaders/inline-loader.js!./src/a.js\")\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// console.log('hello');
+// -! 不会让文件再通过pre + normal loader 处理
+// ! 不再用normal
+// !! 不用其他所有，只用行内
+// let str = require('!!inline-loader!./a.js')
+var FinalFantasy = /*#__PURE__*/function () {
+  function FinalFantasy() {
+    _classCallCheck(this, FinalFantasy);
+
+    this.name = 'Erozia';
+  }
+
+  _createClass(FinalFantasy, [{
+    key: "getName",
+    value: function getName() {
+      return this.name;
+    }
+  }]);
+
+  return FinalFantasy;
+}();
+
+var ff = new FinalFantasy();
+console.log(ff.getName());
 
 /***/ })
 
 /******/ });
+//# sourceMappingURL=build.js.map

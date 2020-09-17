@@ -1,4 +1,4 @@
-function loader(source) { // loader的参数
+function loader(source) {
   console.log('loader 33333333');
   return source
 }
