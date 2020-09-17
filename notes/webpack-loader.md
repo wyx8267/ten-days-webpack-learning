@@ -173,3 +173,39 @@ function loader(source) {
 }
 module.exports = loader;
 ```
+
+### file-loader & url-loader
+
+1. file-loader 作用：根据图片生成md5，发射到dist目录下,file-loader还会返回当前图片路径
+
+```js
+let loaderUtils = require('loader-utils')
+function loader(source) {
+  // 根据当前文件生成路径
+  let filename = loaderUtils.interpolateName(this, '[hash].[ext]', { content: source })
+  // 发射文件
+  this.emitFile(filename, source);
+  return `module.exports="${filename}"`;
+}
+loader.raw = true; //二进制
+module.exports = loader
+```
+
+2. url-loader 作用：根据设定的大小限制，选择将图片转换为base64或调用file-loader
+
+```js
+let loaderUtils = require('loader-utils')
+let mime = require('mime')
+
+function loader(source) {
+  let {limit} = loaderUtils.getOptions(this);
+  if (limit && limit > source.length) {
+    // 文件大小小于设定限制，转换为base64
+    return `module.exports="data:${mime.getType(this.resourcePath)};base64,${source.toString('base64')}"`
+  } else {
+    return require('./file-loader').call(this, source)
+  }
+}
+loader.raw = true; //二进制
+module.exports = loader
+```

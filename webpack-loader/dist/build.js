@@ -86,16 +86,28 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/avatar.jpg":
+/*!************************!*\
+  !*** ./src/avatar.jpg ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports="3c3638268847e8396fb8eefd2a9128d2.jpg"
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/**
-* code by XZX @2020
-*/
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _avatar_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./avatar.jpg */ "./src/avatar.jpg");
+/* harmony import */ var _avatar_jpg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_avatar_jpg__WEBPACK_IMPORTED_MODULE_0__);
 // console.log('hello');
 
 // -! 不会让文件再通过pre + normal loader 处理
@@ -103,17 +115,22 @@
 // !! 不用其他所有，只用行内
 // let str = require('!!inline-loader!./a.js')
 
-class FinalFantasy{
-  constructor() {
-    this.name = 'Erozia';
-  }
-  getName() {
-    return this.name;
-  }
-}
+// class FinalFantasy{
+//   constructor() {
+//     this.name = 'Erozia';
+//   }
+//   getName() {
+//     return this.name;
+//   }
+// }
 
-let ff = new FinalFantasy();
-console.log(ff.getName());
+// let ff = new FinalFantasy();
+// console.log(ff.getName());
+
+
+let img = document.createElement('img');
+img.src = _avatar_jpg__WEBPACK_IMPORTED_MODULE_0___default.a;
+document.body.appendChild(img);
 
 /***/ })
 

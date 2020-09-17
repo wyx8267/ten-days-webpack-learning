@@ -22,15 +22,28 @@ module.exports = {
     // loader 顺序 pre + normal + inline + post
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jpg$/,
+        // file-loader 作用：根据图片生成md5，发射到dist目录下,file-loader还会返回当前图片路径
+        // use: 'file-loader'
+
+        // url-loader 作用：根据设定的大小限制，选择将图片转换为base64或调用file-loader
         use: {
-          loader: 'banner-loader',
+          loader: 'url-loader',
           options: {
-            text: 'code by XXX',
-            filename: path.resolve(__dirname, 'banner.js')
+            limit: 20*1024
           }
         }
       }
+      // {
+      //   test: /\.js$/,
+      //   use: {
+      //     loader: 'banner-loader',
+      //     options: {
+      //       text: 'code by XXX',
+      //       filename: path.resolve(__dirname, 'banner.js')
+      //     }
+      //   }
+      // }
       // {
       //   test: /\.js$/,
       //   use: {
