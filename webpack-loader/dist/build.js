@@ -91,40 +91,28 @@
   !*** ./src/index.js ***!
   \**********************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
+/**
+* code by XZX @2020
+*/
 // console.log('hello');
+
 // -! 不会让文件再通过pre + normal loader 处理
 // ! 不再用normal
 // !! 不用其他所有，只用行内
 // let str = require('!!inline-loader!./a.js')
-var FinalFantasy = /*#__PURE__*/function () {
-  function FinalFantasy() {
-    _classCallCheck(this, FinalFantasy);
 
+class FinalFantasy{
+  constructor() {
     this.name = 'Erozia';
   }
+  getName() {
+    return this.name;
+  }
+}
 
-  _createClass(FinalFantasy, [{
-    key: "getName",
-    value: function getName() {
-      return this.name;
-    }
-  }]);
-
-  return FinalFantasy;
-}();
-
-var ff = new FinalFantasy();
+let ff = new FinalFantasy();
 console.log(ff.getName());
 
 /***/ })

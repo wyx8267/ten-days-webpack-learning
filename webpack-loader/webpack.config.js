@@ -8,6 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'source-map',
+  watch: true,
   resolveLoader: {
     modules: ['node_modules', path.resolve(__dirname, 'loaders')]
     // 别名
@@ -20,18 +21,27 @@ module.exports = {
     // loader 顺序问题，从右向左，从下到上
     // loader 顺序 pre + normal + inline + post
     rules: [
-
       {
         test: /\.js$/,
         use: {
-          loader: 'babel-loader',
+          loader: 'banner-loader',
           options: {
-            presets: [
-              '@babel/preset-env'
-            ]
+            text: 'code by XXX',
+            filename: path.resolve(__dirname, 'banner.js')
           }
         }
       }
+      // {
+      //   test: /\.js$/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: {
+      //       presets: [
+      //         '@babel/preset-env'
+      //       ]
+      //     }
+      //   }
+      // }
     ]
 
     // rules: [
