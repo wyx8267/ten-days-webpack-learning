@@ -86,6 +86,21 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./loaders/css-loader.js!./loaders/less-loader.js!./src/index.less":
+/*!*************************************************************************!*\
+  !*** ./loaders/css-loader.js!./loaders/less-loader.js!./src/index.less ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+let list = []
+list.push("body {\n  background: #ace;\n  background: ")
+list.push('url('+__webpack_require__(/*! ./avatar.jpg */ "./src/avatar.jpg")+')')
+list.push(";\n}\n")
+module.exports = list.join('')
+
+/***/ }),
+
 /***/ "./src/avatar.jpg":
 /*!************************!*\
   !*** ./src/avatar.jpg ***!
@@ -106,8 +121,8 @@ module.exports="3c3638268847e8396fb8eefd2a9128d2.jpg"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _avatar_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./avatar.jpg */ "./src/avatar.jpg");
-/* harmony import */ var _avatar_jpg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_avatar_jpg__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index_less__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.less */ "./src/index.less");
+/* harmony import */ var _index_less__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_less__WEBPACK_IMPORTED_MODULE_0__);
 // console.log('hello');
 
 // -! 不会让文件再通过pre + normal loader 处理
@@ -127,10 +142,27 @@ __webpack_require__.r(__webpack_exports__);
 // let ff = new FinalFantasy();
 // console.log(ff.getName());
 
+// import avatar from './avatar.jpg';
+// let img = document.createElement('img');
+// img.src = avatar;
+// document.body.appendChild(img);
 
-let img = document.createElement('img');
-img.src = _avatar_jpg__WEBPACK_IMPORTED_MODULE_0___default.a;
-document.body.appendChild(img);
+
+
+/***/ }),
+
+/***/ "./src/index.less":
+/*!************************!*\
+  !*** ./src/index.less ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+    let style = document.createElement('style');
+    style.innerHTML = __webpack_require__(/*! !../loaders/css-loader.js!../loaders/less-loader.js!./index.less */ "./loaders/css-loader.js!./loaders/less-loader.js!./src/index.less");
+    document.head.appendChild(style);
+  
 
 /***/ })
 

@@ -8,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'source-map',
-  watch: true,
+  // watch: true,
   resolveLoader: {
     modules: ['node_modules', path.resolve(__dirname, 'loaders')]
     // 别名
@@ -21,6 +21,10 @@ module.exports = {
     // loader 顺序问题，从右向左，从下到上
     // loader 顺序 pre + normal + inline + post
     rules: [
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },
       {
         test: /\.jpg$/,
         // file-loader 作用：根据图片生成md5，发射到dist目录下,file-loader还会返回当前图片路径

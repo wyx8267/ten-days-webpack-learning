@@ -17,7 +17,9 @@
 // let ff = new FinalFantasy();
 // console.log(ff.getName());
 
-import avatar from './avatar.jpg';
-let img = document.createElement('img');
-img.src = avatar;
-document.body.appendChild(img);
+// import avatar from './avatar.jpg';
+// let img = document.createElement('img');
+// img.src = avatar;
+// document.body.appendChild(img);
+
+import './index.less'

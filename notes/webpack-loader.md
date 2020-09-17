@@ -1,6 +1,6 @@
 ### loader 配置
 
-webpack 寻找 loader 三种方式
+webpack 配置 loader 三种方式
 
 ```js
 //1 直接寻址
@@ -208,4 +208,86 @@ function loader(source) {
 }
 loader.raw = true; //二进制
 module.exports = loader
+```
+
+### less-loader & css-loader & style-loader
+
+1. less-loader
+
+```js
+let less = require('less')
+
+function loader(source) {
+  let css;
+  less.render(source, function (err, result) {
+    css = result.css
+  })
+  return css
+}
+
+module.exports = loader;
+```
+
+2. css-loader
+
+```js
+const {
+  match
+} = require("micromatch");
+
+function loader(source) {
+  let reg = /url\((.+?)\)/g
+  let pos = 0;
+  let current;
+  let arr = ['let list = []']
+  while (current = reg.exec(source)) {
+    let [matchUrl, g] = current;
+    // console.log(current, matchUrl, g)
+    // matchUrl:url('./avatar.jpg')  g:'./avatar.jpg'
+    let last = reg.lastIndex - matchUrl.length;
+    arr.push(`list.push(${JSON.stringify(source.slice(pos, last))})`)
+    pos = reg.lastIndex;
+    // g 替换成 require 写法
+    arr.push(`list.push('url('+require(${g})+')')`);
+    arr.push(`list.push(${JSON.stringify(source.slice(pos))})`)
+    arr.push(`module.exports = list.join('')`)
+    // console.log(arr.join(`\r\n`));
+    return arr.join('\r\n');
+  }
+  return source;
+}
+
+module.exports = loader;
+```
+
+3. style-loader
+
+```js
+let loaderUtils = require('loader-utils')
+
+// 作用：导出脚本
+function loader(source) {
+  let str = `
+    let style = document.createElement('style');
+    style.innerHTML = ${JSON.stringify(source)};
+    document.head.appendChild(style);
+  `
+  return str;
+}
+// 在 style-loader 上写了pitch
+// css-loader!less-loader!./index.less
+loader.pitch = function (remainingRequest) { // 剩余请求
+  // console.log(remainingRequest);
+  // console.log(loaderUtils.stringifyRequest(this, '!!' + remainingRequest));
+
+  // stringifyRequest将请求转换为可在require()或import中使用的字符串，同时避免使用绝对路径。
+  // require 路径，返回的是css-loader处理后的结果 require('!!css-loader!less-loader!index.less)
+  let str = `
+    let style = document.createElement('style');
+    style.innerHTML = require(${loaderUtils.stringifyRequest(this, '!!' + remainingRequest)});
+    document.head.appendChild(style);
+  `
+  return str;
+}
+module.exports = loader;
 ```
