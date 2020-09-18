@@ -1,0 +1,5 @@
+@import './a.css';
+body{
+  background: #000;
+  transform: rotate(30deg);
+}

@@ -4,10 +4,23 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack"
+    "build": "rimraf ./dist & webpack",
+    "start": "webpack-dev-server"
   },
   "devDependencies": {
+    "autoprefixer": "^7.2.6",
+    "css-loader": "^4.3.0",
+    "html-webpack-plugin": "^4.4.1",
+    "less": "^3.12.2",
+    "less-loader": "^7.0.1",
+    "mini-css-extract-plugin": "^0.11.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss": "^8.0.5",
+    "postcss-loader": "^4.0.2",
+    "style-loader": "^1.2.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
