@@ -1,21 +1,28 @@
-let str = require('./a')
+// import $ from 'jquery'
 
+// import $ from 'expose-loader?$!jquery'
+// expose-loader 暴露全局的loader 内联使用
+// console.log(window.$);
 
-require('./index.css')
-require('./index.less')
+console.log($); // 在每个模块注入 $ 对象
 
-let fn = () => {
-  console.log(str);
-}
-fn();
+// let str = require('./a')
 
-@log
-class A {
-  a = 1;
-}
-let a = new A()
-console.log(a.a);
+// require('./index.css')
+// require('./index.less')
 
-function log(target) {
-  console.log(target);
-}
+// let fn = () => {
+//   console.log(str);
+// }
+// fn();
+
+// @log
+// class A {
+//   a = 1;
+// }
+// let a = new A()
+// console.log(a.a);
+
+// function log(target) {
+//   console.log(target);
+// }

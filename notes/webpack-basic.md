@@ -3,6 +3,31 @@
 
 ### webpack.config.js
 
+#### 全局变量引入
+
+1. ```js
+   import $ from 'expose-loader?$!jquery';
+   // expose-loader 暴露全局的loader 内联使用
+   
+    {
+      test: require.resolve('jquery'),
+      use: 'expose-loader?$'
+    }
+    // 或写在webpack.config.js
+   ```
+
+2. ```js
+   new webpack.ProvidePlugin({ // 在每个模块注入 $ 对象
+      $: 'jquery'
+    })
+   ```
+
+3. ```js
+   externals:{
+     jquery: '$'
+   }
+   // CDN引入，在 webpack.config`中忽略该模块打包
+   ```
 
 ### bundle.js
 ```js
