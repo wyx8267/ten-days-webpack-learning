@@ -5,7 +5,7 @@ const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  mode: 'production', // 模式 默认两种 production development
+  mode: 'development', // 模式 默认两种 production development
   entry: './src/index.js', // 入口
   output: {
     filename: 'bundle.[hash:8].js', // 打包后的文件名
@@ -35,6 +35,33 @@ module.exports = {
   ],
   module: {
     rules: [
+      // {
+      //   test: /\.js$/,
+      //   use: {
+      //     loader: 'eslint-loader',
+      //     options: {
+      //       enforce: 'pre'
+      //     }
+      //   },
+      // },
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {// 把es6转换成es5
+            presets: [
+              '@babel/preset-env'
+            ],
+            plugins: [
+              ['@babel/plugin-proposal-decorators', {'legacy': true}],
+              ['@babel/plugin-proposal-class-properties', { 'loose': true }],
+              ['@babel/plugin-transform-runtime']
+            ]
+          }
+        },
+        include: path.resolve(__dirname, 'src'),
+        exclude: /node_modules/
+      },
       // { // css-loader 解析@import、url()之类语法
       //   // style-loader 把css插入到head标签中
       //   // loader特点 作用单一
